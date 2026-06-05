@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Timesheet
 Bundle-SymbolicName: beluga.timesheet
-Bundle-Version: 1.0.8.qualifier
+Bundle-Version: 1.1.3.qualifier
 Require-Bundle: org.adempiere.base;bundle-version="12.0.0",
  org.adempiere.plugin.utils;bundle-version="12.0.0",
  org.adempiere.ui.zk;bundle-version="12.0.0"

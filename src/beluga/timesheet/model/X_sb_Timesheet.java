@@ -34,7 +34,7 @@ public class X_sb_Timesheet extends PO implements I_sb_Timesheet, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20260415L;
+	private static final long serialVersionUID = 20260603L;
 
     /** Standard Constructor */
     public X_sb_Timesheet (Properties ctx, int sb_Timesheet_ID, String trxName)
@@ -43,6 +43,7 @@ public class X_sb_Timesheet extends PO implements I_sb_Timesheet, I_Persistent
       /** if (sb_Timesheet_ID == 0)
         {
 			setAD_User_ID (0);
+			setC_BPartner_ID (0);
 			setsb_timesheet_ID (0);
 			settimesheet_abrechen (true);
 // Y
@@ -58,6 +59,7 @@ public class X_sb_Timesheet extends PO implements I_sb_Timesheet, I_Persistent
       /** if (sb_Timesheet_ID == 0)
         {
 			setAD_User_ID (0);
+			setC_BPartner_ID (0);
 			setsb_timesheet_ID (0);
 			settimesheet_abrechen (true);
 // Y
@@ -73,6 +75,7 @@ public class X_sb_Timesheet extends PO implements I_sb_Timesheet, I_Persistent
       /** if (sb_Timesheet_UU == null)
         {
 			setAD_User_ID (0);
+			setC_BPartner_ID (0);
 			setsb_timesheet_ID (0);
 			settimesheet_abrechen (true);
 // Y
@@ -88,6 +91,7 @@ public class X_sb_Timesheet extends PO implements I_sb_Timesheet, I_Persistent
       /** if (sb_Timesheet_UU == null)
         {
 			setAD_User_ID (0);
+			setC_BPartner_ID (0);
 			setsb_timesheet_ID (0);
 			settimesheet_abrechen (true);
 // Y
@@ -284,6 +288,34 @@ public class X_sb_Timesheet extends PO implements I_sb_Timesheet, I_Persistent
 	public String getInternalComments()
 	{
 		return (String)get_Value(COLUMNNAME_InternalComments);
+	}
+
+	public org.compiere.model.I_S_TimeExpenseLine getS_TimeExpenseLine() throws RuntimeException
+	{
+		return (org.compiere.model.I_S_TimeExpenseLine)MTable.get(getCtx(), org.compiere.model.I_S_TimeExpenseLine.Table_ID)
+			.getPO(getS_TimeExpenseLine_ID(), get_TrxName());
+	}
+
+	/** Set Expense Line.
+		@param S_TimeExpenseLine_ID Time and Expense Report Line
+	*/
+	public void setS_TimeExpenseLine_ID (int S_TimeExpenseLine_ID)
+	{
+		if (S_TimeExpenseLine_ID < 1)
+			set_ValueNoCheck (COLUMNNAME_S_TimeExpenseLine_ID, null);
+		else
+			set_ValueNoCheck (COLUMNNAME_S_TimeExpenseLine_ID, Integer.valueOf(S_TimeExpenseLine_ID));
+	}
+
+	/** Get Expense Line.
+		@return Time and Expense Report Line
+	  */
+	public int getS_TimeExpenseLine_ID()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_S_TimeExpenseLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	/** Set Start Time.

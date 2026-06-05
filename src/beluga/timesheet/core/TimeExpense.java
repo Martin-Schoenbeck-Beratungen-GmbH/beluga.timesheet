@@ -45,6 +45,7 @@ public class TimeExpense extends SvrProcess {
 			
 			line = new MTimeExpenseLine(getCtx(), line_id, get_TrxName());
 			
+			line.setIsActive(timesheet.isActive());
 			line.setC_UOM_ID(UOM_id);
 			line.setQty(timesheet.getbilltime());
 			line.setC_Project_ID(timesheet.getC_Project_ID());
@@ -53,6 +54,10 @@ public class TimeExpense extends SvrProcess {
 			line.setIsInvoiced(timesheet.istimesheet_abrechen());
 	
 			line.saveEx();
+			
+			timesheet.setS_TimeExpenseLine_ID(timeexpens_id);
+			
+			timesheet.saveEx();
 						
 			return "@OK@";
 		}
@@ -68,6 +73,7 @@ public class TimeExpense extends SvrProcess {
 			line.setS_TimeExpense_ID(timeexpens_id);
 			line.setIsTimeReport(true);
 			line.set_ValueOfColumn("sb_timesheet_ID", timesheet.get_ID());
+			line.setIsActive(timesheet.isActive());
 			line.setC_UOM_ID(UOM_id);
 			line.setQty(timesheet.getbilltime());
 			line.setC_Project_ID(timesheet.getC_Project_ID());
@@ -76,6 +82,10 @@ public class TimeExpense extends SvrProcess {
 			line.setIsInvoiced(timesheet.istimesheet_abrechen());
 			
 			line.saveEx();
+			
+			timesheet.setS_TimeExpenseLine_ID(timeexpens_id);
+			
+			timesheet.saveEx();
 			
 			return "@OK@";
 			
@@ -100,6 +110,7 @@ public class TimeExpense extends SvrProcess {
 		line.setS_TimeExpense_ID(timeExpense.get_ID());
 		line.setIsTimeReport(true);
 		line.set_ValueOfColumn("sb_timesheet_ID", timesheet.get_ID());
+		line.setIsActive(timesheet.isActive());
 		line.setC_UOM_ID(UOM_id);
 		line.setQty(timesheet.getbilltime());
 		line.setC_Project_ID(timesheet.getC_Project_ID());
@@ -108,6 +119,10 @@ public class TimeExpense extends SvrProcess {
 		line.setIsInvoiced(timesheet.istimesheet_abrechen());
 		
 		line.saveEx();
+		
+		timesheet.setS_TimeExpenseLine_ID(line.getS_TimeExpenseLine_ID());
+		
+		timesheet.saveEx();
 
 		return "@OK@";
 	}

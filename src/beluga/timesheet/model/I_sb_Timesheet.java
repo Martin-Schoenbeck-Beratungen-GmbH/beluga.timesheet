@@ -195,6 +195,21 @@ public interface I_sb_Timesheet
 	  */
 	public boolean isActive();
 
+    /** Column name S_TimeExpenseLine_ID */
+    public static final String COLUMNNAME_S_TimeExpenseLine_ID = "S_TimeExpenseLine_ID";
+
+	/** Set Expense Line.
+	  * Time and Expense Report Line
+	  */
+	public void setS_TimeExpenseLine_ID (int S_TimeExpenseLine_ID);
+
+	/** Get Expense Line.
+	  * Time and Expense Report Line
+	  */
+	public int getS_TimeExpenseLine_ID();
+
+	public org.compiere.model.I_S_TimeExpenseLine getS_TimeExpenseLine() throws RuntimeException;
+
     /** Column name StartTime */
     public static final String COLUMNNAME_StartTime = "StartTime";
 

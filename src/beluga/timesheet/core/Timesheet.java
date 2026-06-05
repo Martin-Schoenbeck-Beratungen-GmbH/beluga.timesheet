@@ -27,7 +27,7 @@ public class Timesheet extends SvrProcess  {
 	@Override
 	protected String doIt() throws Exception { 
 		if (timesheet.getStartTime().after(timesheet.getEndTime())){
-			return "Fehler";
+			return "Startzeit ist nach der Endzeit";
 		}
 		timesheet.settimespend(getTimeSpend());
 		
