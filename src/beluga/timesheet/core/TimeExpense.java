@@ -39,7 +39,14 @@ public class TimeExpense extends SvrProcess {
 	@Override
 	protected String doIt() throws Exception {
 		
-		line_id = new Query(getCtx(), MTimeExpenseLine.Table_Name, "sb_timesheet_id = " + timesheet.get_ID(), null).firstId();
+		line_id = new Query(
+						getCtx(),
+						MTimeExpenseLine.Table_Name,
+						"sb_timesheet_id = ?",
+						get_TrxName()
+					)
+				.setParameters(timesheet.get_ID())
+				.firstId();
 		
 		if (line_id != 0 && line_id != -1) {
 			
@@ -61,10 +68,18 @@ public class TimeExpense extends SvrProcess {
 						
 			return "@OK@";
 		}
-			
-		timeexpens_id = new Query(getCtx(), MTimeExpense.Table_Name,
-				"datereport = '" + timesheet.getStartTime().toString().substring(0, 10) + 
-				"' and c_bpartner_id = " + timesheet.getAD_User().getC_BPartner_ID() , null).firstId();
+		
+		final String EXPENSE_SQL = "datereport = ? AND C_BPartner_ID = ?";
+		timeexpens_id = new Query(
+					getCtx(),
+					MTimeExpense.Table_Name,
+					EXPENSE_SQL,
+					get_TrxName()
+				)
+				.setParameters(
+						timesheet.getStartTime().toString().substring(0, 10),
+						timesheet.getAD_User().getC_BPartner_ID())
+				.firstId();
 
 		if(timeexpens_id != 0 && timeexpens_id != -1) {
 			
